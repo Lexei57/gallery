@@ -1,0 +1,20 @@
+<div class="container">
+  <section>
+    <div
+      class="image-container"
+      ngx-masonry
+      [options]="masonryOptions"
+      [updateLayout]="updateMasonryLayout"
+      [ordered]="true"
+      *ngIf="mainImages$ | async as images"
+    >
+      <div
+        class="image-card"
+        ngxMasonryItem
+        *ngFor="let image of images"
+      >
+        <img [src]="image.urls.small" alt="image.description">
+      </div>
+    </div>
+  </section>
+</div>
