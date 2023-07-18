@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {GalleryComponent} from './components/gallery/gallery.component';
 
 const routes: Routes = [
-  {path: '', component: GalleryComponent}
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
+  {path: 'main', component: GalleryComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,17 @@
+<div class="pagination-buttons">
+      <button
+        class="pagination-buttons__left"
+        [disabled]="imageService.imagePage === 1"
+        (click)="switchToPreviousPage()"
+      >
+        <img src="assets/icons/arrow-left.svg" alt="arrow-left">
+      </button>
+      <span>{{imageService.imagePage}}</span>
+      <button
+        class="pagination-buttons__right"
+        (click)="switchToNextPage()"
+
+      >
+        <img src="assets/icons/arrow-right.svg" alt="arrow-right">
+      </button>
+    </div>

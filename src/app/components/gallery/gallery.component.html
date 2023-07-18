@@ -1,4 +1,7 @@
 <div class="container">
+  <nav>
+    <switcher></switcher>
+  </nav>
   <section>
     <div
       class="image-container"
@@ -6,7 +9,7 @@
       [options]="masonryOptions"
       [updateLayout]="updateMasonryLayout"
       [ordered]="true"
-      *ngIf="mainImages$ | async as images"
+      *ngIf="imageService.images$ | async as images"
     >
       <div
         class="image-card"

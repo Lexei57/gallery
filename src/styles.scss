@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "src/app/utils/style-functions";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(169, 169, 169, .5);
+    &:hover {
+      background-color: rgba(169, 169, 169);
+    }
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F2F2F2;
+  color: #111827;
+  padding-bottom: 40px;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-image: linear-gradient(to right, rgba(130,204,253,.2) 17%, rgba(255, 184, 115, .2) 100%);
+  border-radius: 0 0 50px 50px;
+}
+
+.image-container {
+  padding-bottom: rem(20);
+}
+
+.image-card {
+  cursor: pointer;
+  width: 33%;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: rem(5);
+}
+
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-buttons button {
+  margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+}
+
+.pagination-buttons__left {
+  padding: 0 5px 0 10px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateX(-5px);
+  }
+}
+
+.pagination-buttons__right {
+  padding: 0 10px 0 5px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateX(5px);
+  }
+}
+
+.pagination-buttons span {
+  font-weight: bold;
+}

@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {GalleryModule} from './components/gallery/gallery.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,12 @@ import {GalleryModule} from './components/gallery/gallery.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    GalleryModule
+    GalleryModule,
+    SharedModule
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import {Observable} from 'rxjs';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ImageService} from '../../services/image.service';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss']
+  styleUrls: ['./gallery.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GalleryComponent {
-
-  imagePage = 1
-  mainImages$!: Observable<any>
+export class GalleryComponent implements OnInit{
 
   updateMasonryLayout!: boolean
   masonryOptions = {
@@ -18,12 +17,17 @@ export class GalleryComponent {
     percentPosition: true,
   }
 
-  constructor(private imageService: ImageService) {
-    this.mainImages$ = this.imageService.getImages(this.imagePage)
+  constructor(
+    public imageService: ImageService,
+    ) {
+  }
+
+  ngOnInit(): void {
   }
 
   columnsToggle() {
     this.updateMasonryLayout = !this.updateMasonryLayout
   }
+
 
 }
