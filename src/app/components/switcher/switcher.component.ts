@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ImageService} from '../../services/image.service';
 
@@ -8,7 +8,6 @@ import {ImageService} from '../../services/image.service';
   styleUrls: ['./switcher.component.scss']
 })
 export class SwitcherComponent {
-
 
   constructor(
     public imageService: ImageService,
@@ -35,7 +34,7 @@ export class SwitcherComponent {
 
   updatePage() {
     if (this.route.snapshot.queryParamMap.has('search_request')) {
-      this.imageService.searchImages('water').subscribe()
+      this.imageService.searchImages().subscribe()
     } else {
       this.imageService.getImages().subscribe()
     }

@@ -19,10 +19,14 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     public imageService: ImageService,
+    private router: Router
     ) {
   }
 
   ngOnInit(): void {
+    this.router.navigate([], {
+      queryParams: {collection: null}
+    })
   }
 
   columnsToggle() {

@@ -8,18 +8,21 @@ import {ImageService} from '../../services/image.service';
   styleUrls: ['./search-panel.component.scss']
 })
 export class SearchPanelComponent {
-  searchRequest: any;
 
   constructor(
-    private imageService: ImageService,
+    public imageService: ImageService,
     private router: Router
     ) {
   }
 
   searchImages() {
-    this.imageService.searchImages(this.searchRequest).subscribe(() => {
+    this.imageService.imagePage = 1
+    this.imageService.searchImages().subscribe(() => {
       this.router.navigate([], {
-        queryParams: {search_request: this.searchRequest}, queryParamsHandling: 'merge'
+        queryParams: {
+          search_request: this.imageService.searchRequest,
+          page: 1
+        }, queryParamsHandling: 'merge'
       })
     })
   }
