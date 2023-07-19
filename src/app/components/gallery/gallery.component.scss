@@ -1,0 +1,26 @@
+@import "src/app/utils/style-functions";
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-image: linear-gradient(to right, rgba(130,204,253,.2) 17%, rgba(255, 184, 115, .2) 100%);
+  border-radius: 0 0 50px 50px;
+}
+
+.image-container {
+  padding-bottom: rem(20);
+}
+
+.image-card {
+  cursor: pointer;
+  width: 33%;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: rem(5);
+}

@@ -9,7 +9,7 @@ import {ImageService} from '../../services/image.service';
   styleUrls: ['./gallery.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GalleryComponent implements OnInit{
+export class GalleryComponent implements OnInit {
 
   updateMasonryLayout!: boolean
   masonryOptions = {

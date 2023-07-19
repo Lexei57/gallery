@@ -19,17 +19,27 @@ export class ImageService {
   }
 
   getImages(): Observable<any> {
-    const options = this.imagePage ?
+    const queryOptions = this.imagePage ?
       {params: new HttpParams().set('page', this.imagePage).set('per_page', 30).set('client_id', environment.apiKey)} : {}
-    return this.http.get('https://api.unsplash.com/photos', options)
+    return this.http.get('https://api.unsplash.com/photos', queryOptions)
       .pipe(
         tap((r: any) => this.images$$.next(r)),
 
       )
   }
 
-  updatePage() {
-    this.getImages().subscribe()
+  searchImages(query: string) {
+    const queryOptions = query ?
+      {params: new HttpParams().set('page', this.imagePage).set('per_page', 30).set('query', query).set('client_id', environment.apiKey)} : {}
+    return this.http.get('https://api.unsplash.com/search/photos', queryOptions)
+      .pipe(
+        map((results: any) => results['results']),
+        tap((r: any) => this.images$$.next(r)),
+      )
   }
+
+  // updatePage() {
+  //   this.getImages().subscribe()
+  // }
 
 }

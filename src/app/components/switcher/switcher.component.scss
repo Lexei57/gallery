@@ -1,0 +1,32 @@
+.pagination-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-buttons button {
+  margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+}
+
+.pagination-buttons__left {
+  padding: 0 5px 0 10px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateX(-5px);
+  }
+}
+
+.pagination-buttons__right {
+  padding: 0 10px 0 5px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateX(5px);
+  }
+}
+
+.pagination-buttons span {
+  font-weight: bold;
+}

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ImageService} from '../../services/image.service';
 
 @Component({
@@ -9,26 +9,36 @@ import {ImageService} from '../../services/image.service';
 })
 export class SwitcherComponent {
 
+
   constructor(
     public imageService: ImageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) {
   }
 
   switchToPreviousPage() {
     this.imageService.imagePage--
-    this.imageService.updatePage()
+    this.updatePage()
     this.router.navigate([], {
-      queryParams : {page: this.imageService.imagePage}
+      queryParams : {page: this.imageService.imagePage}, queryParamsHandling: 'merge'
     })
   }
 
   switchToNextPage() {
     this.imageService.imagePage++
-    this.imageService.updatePage()
+    this.updatePage()
     this.router.navigate([], {
-      queryParams : {page: this.imageService.imagePage}
+      queryParams : {page: this.imageService.imagePage}, queryParamsHandling: 'merge'
     })
+  }
+
+  updatePage() {
+    if (this.route.snapshot.queryParamMap.has('search_request')) {
+      this.imageService.searchImages('water').subscribe()
+    } else {
+      this.imageService.getImages().subscribe()
+    }
   }
 
 }
