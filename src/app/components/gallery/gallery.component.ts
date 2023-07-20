@@ -1,7 +1,9 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ImageService} from '../../services/image.service';
+import {ImageDetailsComponent} from '../image-details/image-details.component';
 
 @Component({
   selector: 'app-gallery',
@@ -20,7 +22,8 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     public imageService: ImageService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
     ) {
   }
 
@@ -33,6 +36,16 @@ export class GalleryComponent implements OnInit {
   columnsToggle() {
     this.isSmallImages = !this.isSmallImages
     this.updateMasonryLayout = !this.updateMasonryLayout
+  }
+
+  openImage() {
+    const dialogConfig = new MatDialogConfig()
+
+    dialogConfig.autoFocus = true
+    dialogConfig.width = '1200px'
+
+    this.dialog.open(ImageDetailsComponent, dialogConfig)
+
   }
 
 
