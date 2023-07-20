@@ -1,8 +1,8 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {
-  BehaviorSubject,
-  distinctUntilChanged,
+  BehaviorSubject, delay,
+  distinctUntilChanged, filter,
   map,
   Observable,
   of,
@@ -58,7 +58,7 @@ export class ImageService {
       {params: new HttpParams().set('client_id', environment.apiKey)} : {}
     return this.http.get(`https://api.unsplash.com/photos/${imageId}`, queryOptions)
       .pipe(
-        tap(console.log),
+        startWith(null),
         tap(image => this.imageDetails$$.next(image))
       )
   }
