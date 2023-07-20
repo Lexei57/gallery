@@ -39,7 +39,7 @@ export class ImageService {
       {params: new HttpParams().set('page', this.imagePage).set('per_page', 30).set('client_id', environment.apiKey)} : {}
     return this.http.get<IImage[]>('https://api.unsplash.com/photos', queryOptions)
       .pipe(
-        tap(r => this.images$$.next(r)),
+        tap(image => this.images$$.next(image)),
       )
   }
 
@@ -49,11 +49,17 @@ export class ImageService {
     return this.http.get<IImage[]>('https://api.unsplash.com/search/photos', queryOptions)
       .pipe(
         map((results: any) => results.results),
-        tap(r => this.images$$.next(r)),
+        tap(images => this.images$$.next(images)),
       )
   }
 
-  getImageDetails() {
-
+  getImageDetails(imageId: string): Observable<any> {
+    const queryOptions = imageId ?
+      {params: new HttpParams().set('client_id', environment.apiKey)} : {}
+    return this.http.get(`https://api.unsplash.com/photos/${imageId}`, queryOptions)
+      .pipe(
+        tap(console.log),
+        tap(image => this.imageDetails$$.next(image))
+      )
   }
 }

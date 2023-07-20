@@ -1,5 +1,5 @@
-<div class="container">
-  <img src="" alt="">
+<div class="container" *ngIf="imageService.imageDetails$ | async as image">
+  <img [src]="image.urls.regular" alt="image">
 </div>
 
 <button (click)="closeDialog()">close</button>

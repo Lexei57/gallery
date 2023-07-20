@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {Router} from '@angular/router';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {ImageService} from '../../services/image.service';
 import {ImageDetailsComponent} from '../image-details/image-details.component';
 
@@ -38,14 +37,19 @@ export class GalleryComponent implements OnInit {
     this.updateMasonryLayout = !this.updateMasonryLayout
   }
 
-  openImage() {
+  openImage(imageId: string) {
     const dialogConfig = new MatDialogConfig()
 
     dialogConfig.autoFocus = true
     dialogConfig.width = '1200px'
 
+    this.imageService.getImageDetails(imageId).subscribe()
+
     this.dialog.open(ImageDetailsComponent, dialogConfig)
 
+  }
+
+  getImageDetails(imageId: string) {
   }
 
 

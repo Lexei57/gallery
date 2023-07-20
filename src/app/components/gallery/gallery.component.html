@@ -7,7 +7,6 @@
       <label class="tgl-btn" data-tg-off="Big" data-tg-on="Small" for="cb5"></label>
     </div>
   </nav>
-  <button (click)="openImage()">but</button>
 
   <section>
     <div
@@ -24,7 +23,7 @@
         *ngFor="let image of images"
         [class.image-card-small]="isSmallImages"
       >
-        <img [src]="image.urls.small" alt="image.description">
+        <img [src]="image.urls.small" alt="image.description" (click)="openImage(image.id)">
       </div>
     </div>
   </section>

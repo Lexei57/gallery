@@ -1,3 +1,4 @@
+import {AsyncPipe, NgIf} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -17,7 +18,9 @@ import {SwitcherComponent} from '../components/switcher/switcher.component';
     NgxMasonryModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgIf,
+    AsyncPipe
   ],
   exports: [
     NgxMasonryModule,
