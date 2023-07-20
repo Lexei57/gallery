@@ -2,6 +2,10 @@
   <nav>
     <search-panel></search-panel>
     <switcher></switcher>
+    <div class="tg-list">
+      <input class="tgl tgl-flip" id="cb5" type="checkbox" (click)="columnsToggle()">
+      <label class="tgl-btn" data-tg-off="Big" data-tg-on="Small" for="cb5"></label>
+    </div>
   </nav>
   <section>
     <div
@@ -16,6 +20,7 @@
         class="image-card"
         ngxMasonryItem
         *ngFor="let image of images"
+        [class.image-card-small]="isSmallImages"
       >
         <img [src]="image.urls.small" alt="image.description">
       </div>

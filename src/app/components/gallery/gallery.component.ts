@@ -12,6 +12,7 @@ import {ImageService} from '../../services/image.service';
 export class GalleryComponent implements OnInit {
 
   updateMasonryLayout!: boolean
+  isSmallImages!: boolean
   masonryOptions = {
     gutter: 5,
     percentPosition: true,
@@ -30,6 +31,7 @@ export class GalleryComponent implements OnInit {
   }
 
   columnsToggle() {
+    this.isSmallImages = !this.isSmallImages
     this.updateMasonryLayout = !this.updateMasonryLayout
   }
 

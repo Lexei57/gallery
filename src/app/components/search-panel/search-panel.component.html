@@ -1,2 +1,10 @@
-<input [(ngModel)]="imageService.searchRequest">
-<button (click)="searchImages()">Search</button>
+<div class="search">
+  <input
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="imageService.searchRequest"
+    (keydown.enter)="searchImages()">
+  <button class="search-button" (click)="searchImages()">
+    <img src="./assets/icons/search.svg" alt="search">
+  </button>
+</div>
