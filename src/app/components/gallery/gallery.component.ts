@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {Router} from '@angular/router';
-import {Observable, of, tap} from 'rxjs';
+import {tap} from 'rxjs';
 import {ImageService} from '../../services/image.service';
-import {IImage} from '../../shared/interfaces';
 import {ImageDetailsComponent} from '../image-details/image-details.component';
 
 @Component({
@@ -45,9 +44,10 @@ export class GalleryComponent implements OnInit {
     dialogConfig.autoFocus = true
     dialogConfig.width = '1400px'
     dialogConfig.minHeight = '70vh'
+    dialogConfig.enterAnimationDuration = 300
 
 
-    this.imageService.getImageDetails(imageId).subscribe()
+    this.imageService.getDetailedImage(imageId)
 
     const dialogRef = this.dialog.open(ImageDetailsComponent, dialogConfig)
 

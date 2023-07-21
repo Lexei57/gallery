@@ -1,15 +1,10 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {
-  BehaviorSubject, delay,
-  distinctUntilChanged, filter,
+  BehaviorSubject,
   map,
   Observable,
-  of,
-  shareReplay,
-  startWith,
-  switchMap,
-  take,
+
   tap
 } from 'rxjs';
 import {environment} from '../environments/environment';
@@ -53,13 +48,9 @@ export class ImageService {
       )
   }
 
-  getImageDetails(imageId: string): Observable<any> {
-    const queryOptions = imageId ?
-      {params: new HttpParams().set('client_id', environment.apiKey)} : {}
-    return this.http.get(`https://api.unsplash.com/photos/${imageId}`, queryOptions)
-      .pipe(
-        startWith(null),
-        tap(image => this.imageDetails$$.next(image))
-      )
-  }
+  getDetailedImage(imageId: string) {
+      const image = this.images$$.getValue()
+        .filter((image: IImage) => image.id === imageId)
+      this.imageDetails$$.next(image[0])
+    }
 }
