@@ -1,11 +1,11 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {
-  BehaviorSubject,
+  BehaviorSubject, concatMap, filter,
   map,
-  Observable,
+  Observable, startWith, switchMap,
 
-  tap
+  tap, toArray
 } from 'rxjs';
 import {environment} from '../environments/environment';
 import {IImage} from '../shared/interfaces';
@@ -34,13 +34,17 @@ export class ImageService {
       {params: new HttpParams().set('page', this.imagePage).set('per_page', 30).set('client_id', environment.apiKey)} : {}
     return this.http.get<IImage[]>('https://api.unsplash.com/photos', queryOptions)
       .pipe(
-        tap(image => this.images$$.next(image)),
+        tap(images => this.images$$.next(images)),
       )
   }
 
   searchImages(): Observable<IImage[]> {
     const queryOptions = this.searchRequest ?
-      {params: new HttpParams().set('page', this.imagePage).set('per_page', 30).set('query', this.searchRequest).set('client_id', environment.apiKey)} : {}
+      {params: new HttpParams()
+          .set('page', this.imagePage)
+          .set('per_page', 30)
+          .set('query', this.searchRequest)
+          .set('client_id', environment.apiKey)} : {}
     return this.http.get<IImage[]>('https://api.unsplash.com/search/photos', queryOptions)
       .pipe(
         map((results: any) => results.results),
@@ -48,9 +52,36 @@ export class ImageService {
       )
   }
 
+  searchImagesByTag(tag: string) {
+    const queryOptions = tag ?
+      {params: new HttpParams()
+          .set('page', this.imagePage)
+          .set('per_page', 30)
+          .set('query', tag)
+          .set('client_id', environment.apiKey)} : {}
+    return this.http.get('https://api.unsplash.com/search/collections', queryOptions)
+      .pipe(
+        map((response: any) => response.results),
+        tap(images => this.images$$.next(images.map((images: any) => images.cover_photo)))
+      )
+
+  }
+
   getDetailedImage(imageId: string) {
-      const image = this.images$$.getValue()
-        .filter((image: IImage) => image.id === imageId)
-      this.imageDetails$$.next(image[0])
-    }
+    const queryParams = imageId ? {
+      params: new HttpParams()
+        .set('client_id', environment.apiKey)
+    } : {}
+    return this.http.get(`https://api.unsplash.com/photos/${imageId}`, queryParams)
+      .pipe(
+        startWith(null),
+        tap(image => this.imageDetails$$.next(image))
+      )
+  }
+
+  // getDetailedImage(imageId: string) {
+  //     const image = this.images$$.getValue()
+  //       .filter((image: IImage) => image.id === imageId)
+  //     this.imageDetails$$.next(image[0])
+  //   }
 }

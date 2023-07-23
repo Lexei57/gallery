@@ -4,7 +4,11 @@
     </div>
     <section class="info-container">
       <div class="tags">
-        <p class="tags__item" *ngFor="let tag of image.tags">{{tag.title}}</p>
+        <p class="tags__item"
+           *ngFor="let tag of image.tags"
+           (click)="searchImagesByTag(tag.title)"
+        >{{tag.title}}
+        </p>
       </div>
       <h4 class="img-description">{{image.description}}</h4>
       <div class="info-attributes">

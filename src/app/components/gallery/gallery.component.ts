@@ -47,7 +47,7 @@ export class GalleryComponent implements OnInit {
     dialogConfig.enterAnimationDuration = 300
 
 
-    this.imageService.getDetailedImage(imageId)
+    this.imageService.getDetailedImage(imageId).subscribe()
 
     const dialogRef = this.dialog.open(ImageDetailsComponent, dialogConfig)
 
