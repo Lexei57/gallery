@@ -35,7 +35,10 @@ export class SwitcherComponent {
   updatePage() {
     if (this.route.snapshot.queryParamMap.has('search_request')) {
       this.imageService.searchImages().subscribe()
-    } else {
+    } else if (this.route.snapshot.queryParamMap.has('tag')) {
+      this.imageService.searchImagesByTag().subscribe()
+    }
+    else {
       this.imageService.getImages().subscribe()
     }
   }

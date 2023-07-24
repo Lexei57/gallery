@@ -46,19 +46,18 @@ export class GalleryComponent implements OnInit {
     dialogConfig.minHeight = '70vh'
     dialogConfig.enterAnimationDuration = 300
 
-
     this.imageService.getDetailedImage(imageId).subscribe()
 
     const dialogRef = this.dialog.open(ImageDetailsComponent, dialogConfig)
 
     this.router.navigate([], {
-      queryParams: {id: imageId}
+      queryParams: {id: imageId}, queryParamsHandling: 'merge'
     })
 
-    dialogRef.beforeClosed()
+    dialogRef.afterClosed()
       .pipe(
         tap(() => this.router.navigate([],{
-          queryParams: {collection: null}
+          queryParams: {id: null}, queryParamsHandling: 'merge'
         }))
       ).subscribe()
   }

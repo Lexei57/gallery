@@ -24,6 +24,7 @@ export class ImageService {
 
   searchRequest!: string
   imagePage = 1
+  imageTag!: string
 
   constructor(private http: HttpClient) {
     this.getImages().subscribe()
@@ -52,12 +53,12 @@ export class ImageService {
       )
   }
 
-  searchImagesByTag(tag: string) {
-    const queryOptions = tag ?
+  searchImagesByTag() {
+    const queryOptions = this.imageTag ?
       {params: new HttpParams()
           .set('page', this.imagePage)
           .set('per_page', 30)
-          .set('query', tag)
+          .set('query', this.imageTag)
           .set('client_id', environment.apiKey)} : {}
     return this.http.get('https://api.unsplash.com/search/collections', queryOptions)
       .pipe(
@@ -78,10 +79,4 @@ export class ImageService {
         tap(image => this.imageDetails$$.next(image))
       )
   }
-
-  // getDetailedImage(imageId: string) {
-  //     const image = this.images$$.getValue()
-  //       .filter((image: IImage) => image.id === imageId)
-  //     this.imageDetails$$.next(image[0])
-  //   }
 }

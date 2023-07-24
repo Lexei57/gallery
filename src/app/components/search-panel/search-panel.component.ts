@@ -22,7 +22,7 @@ export class SearchPanelComponent {
         queryParams: {
           search_request: this.imageService.searchRequest,
           page: 1
-        }, queryParamsHandling: 'merge'
+        }
       })
     })
   }
