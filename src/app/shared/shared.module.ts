@@ -1,4 +1,4 @@
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, CommonModule, NgForOf, NgIf} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -15,15 +15,14 @@ import {SwitcherComponent} from '../components/switcher/switcher.component';
     ImageDetailsComponent,
   ],
   imports: [
+    CommonModule,
     NgxMasonryModule,
     HttpClientModule,
     FormsModule,
     MatDialogModule,
-    NgIf,
-    AsyncPipe,
-    NgForOf
   ],
   exports: [
+    CommonModule,
     NgxMasonryModule,
     HttpClientModule,
     FormsModule,

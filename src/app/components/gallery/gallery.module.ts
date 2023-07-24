@@ -8,7 +8,6 @@ import {GalleryComponent} from './gallery.component';
     GalleryComponent
   ],
   imports: [
-    CommonModule,
     SharedModule
   ],
   exports: [
