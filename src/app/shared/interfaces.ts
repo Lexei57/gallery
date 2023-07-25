@@ -11,10 +11,11 @@ export interface IImage  {
   id: string
   urls: Urls
   description: string
+  cover_photo: IImage
 }
 
 export interface IImageListResponse {
-  results: IImageDetailResponse[];
+  results: IImage[];
 }
 
 export interface IImageDetailResponse {
