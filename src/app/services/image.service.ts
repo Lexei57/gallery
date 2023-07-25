@@ -54,6 +54,7 @@ export class ImageService {
   }
 
   searchImagesByTag() {
+    this.searchRequest = ''
     const queryOptions = this.imageTag ?
       {params: new HttpParams()
           .set('page', this.imagePage)
