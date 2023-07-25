@@ -1,10 +1,11 @@
-import {AsyncPipe, CommonModule, NgForOf, NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxMasonryModule} from 'ngx-masonry';
 import {ImageDetailsComponent} from '../components/image-details/image-details.component';
+import {MessagesComponent} from '../components/messages/messages.component';
 import {SearchPanelComponent} from '../components/search-panel/search-panel.component';
 import {SwitcherComponent} from '../components/switcher/switcher.component';
 
@@ -13,6 +14,7 @@ import {SwitcherComponent} from '../components/switcher/switcher.component';
     SwitcherComponent,
     SearchPanelComponent,
     ImageDetailsComponent,
+    MessagesComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import {SwitcherComponent} from '../components/switcher/switcher.component';
     ImageDetailsComponent,
     SwitcherComponent,
     SearchPanelComponent,
+    MessagesComponent
   ]
 })
 

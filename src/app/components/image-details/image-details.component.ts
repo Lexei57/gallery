@@ -1,6 +1,5 @@
-import {DialogRef} from '@angular/cdk/dialog';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ImageService} from '../../services/image.service';
 

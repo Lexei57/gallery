@@ -43,7 +43,7 @@ export class GalleryComponent implements OnInit {
 
     dialogConfig.autoFocus = true
     dialogConfig.width = '1400px'
-    dialogConfig.minHeight = '70vh'
+    // dialogConfig.minHeight = '80vh'
     dialogConfig.enterAnimationDuration = 300
 
     this.imageService.getDetailedImage(imageId).subscribe()

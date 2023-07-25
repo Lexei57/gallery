@@ -1,10 +1,11 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {
-  BehaviorSubject, map, Observable, startWith, tap
+  BehaviorSubject, catchError, map, Observable, startWith, tap, throwError
 } from 'rxjs';
 import {environment} from '../environments/environment';
 import {IImage, IImageDetailResponse, IImageListResponse} from '../shared/interfaces';
+import {MessagesService} from './messages-service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ImageService {
   imagePage = 1
   imageTag!: string
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messagesService: MessagesService) {
     this.getImages().subscribe()
   }
 
@@ -35,6 +36,11 @@ export class ImageService {
     return this.http.get<IImage[]>('https://api.unsplash.com/photos', queryOptions)
       .pipe(
         tap(images => this.images$$.next(images)),
+        catchError(err => {
+          const message = 'Images not found'
+          this.messagesService.showErrors(message)
+          return throwError(err)
+        })
       )
   }
 
@@ -49,6 +55,12 @@ export class ImageService {
       .pipe(
         map((results: IImageListResponse) => results.results),
         tap(images => this.images$$.next(images)),
+        catchError(err => {
+          this.images$$.next([])
+          const message = 'Images not found'
+          this.messagesService.showErrors(message)
+          return throwError(err)
+        })
       )
   }
 
@@ -63,7 +75,13 @@ export class ImageService {
     return this.http.get<IImageListResponse>('https://api.unsplash.com/search/collections', queryOptions)
       .pipe(
         map((response: IImageListResponse) => response.results),
-        tap(images => this.images$$.next(images.map(images => images.cover_photo)))
+        tap(images => this.images$$.next(images.map(images => images.cover_photo))),
+        catchError(err => {
+          this.images$$.next([])
+          const message = 'Images not found'
+          this.messagesService.showErrors(message)
+          return throwError(err)
+        })
       )
 
   }
@@ -76,7 +94,12 @@ export class ImageService {
     return this.http.get<IImageDetailResponse>(`https://api.unsplash.com/photos/${imageId}`, queryParams)
       .pipe(
         startWith(null),
-        tap(image => this.imageDetails$$.next(image))
+        tap(image => this.imageDetails$$.next(image)),
+        catchError(err => {
+          const message = 'Images not found'
+          this.messagesService.showErrors(message)
+          return throwError(err)
+        })
       )
   }
 }
