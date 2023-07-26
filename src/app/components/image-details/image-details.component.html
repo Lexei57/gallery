@@ -1,0 +1,30 @@
+  <div class="container" *ngIf="imageService.imageDetails$ | async as image">
+    <div class="image-container">
+      <img [src]="image.urls.regular" alt="image">
+    </div>
+    <section class="info-container">
+      <div class="tags">
+        <p class="tags__item"
+           *ngFor="let tag of image.tags"
+           (click)="searchImagesByTag(tag.title)"
+        >{{tag.title}}
+        </p>
+      </div>
+      <h4 class="img-description">{{image.description}}</h4>
+      <div class="info-attributes">
+        <div class="info-attributes__item">
+          <img src="/assets/icons/person.svg" alt="author">
+          <p>{{image.user.name}}</p>
+        </div>
+        <div >
+          <p class="info-attributes__item">
+            <img src="/assets/icons/like.svg" alt="likes_counter">
+            {{image.likes}}
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <messages></messages>
+
+
