@@ -96,7 +96,7 @@ export class ImageService {
         startWith(null),
         tap(image => this.imageDetails$$.next(image)),
         catchError(err => {
-          const message = 'Images not found'
+          const message = 'Image not found'
           this.messagesService.showErrors(message)
           return throwError(err)
         })
