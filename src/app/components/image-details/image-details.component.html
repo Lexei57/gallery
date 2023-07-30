@@ -1,4 +1,4 @@
-  <div class="container" *ngIf="imageService.imageDetails$ | async as image">
+  <div class="container" *ngIf="imageService.imageDetails$ | async as image" [@open]>
     <div class="image-container">
       <img [src]="image.urls.regular" alt="image">
     </div>

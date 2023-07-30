@@ -19,6 +19,10 @@
   padding: 20px;
 }
 
+.image-container {
+  min-height: 75vh;
+}
+
 .image-container img {
   max-width: rem(1440);
   max-height: 75vh;
